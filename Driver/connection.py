@@ -1,5 +1,6 @@
 import bluetooth
 import io
+import sys
 
 service_id ="0b938f75-7fe7-4a04-9079-579d78ad64b7"
 service_classes = [service_id, bluetooth.SERIAL_PORT_CLASS]
@@ -22,11 +23,10 @@ def close() :
     serverSocket.close()
 
 setup()
+# i = input()
 while True:
     input = inputSocket.recv(1024)
-    data = bytes((input,'UTF-8'))
-    print data.decode()
-
-    test = io.BytesIO(input)
-    print test.getvalue()
+    data = bytearray(input)
+    for b in data :
+        print b
 close()
